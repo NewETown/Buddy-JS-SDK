@@ -239,8 +239,6 @@ window.Buddy =  function (root) {
 	
 	BuddyClient.prototype.registerDevice = function(appId, appKey, callback){
 		if (getAccessToken(this)) {
-
-		buddy.registerDevice(appId, appKey, callback);
 			callback && callback();
 			return;
 		}
@@ -333,12 +331,14 @@ window.Buddy =  function (root) {
 	}
 
 	BuddyClient.prototype.logoutUser = function(callback) {
+		var s = getSettings(this);
+		var userId = s.user_id;
+
+		if (!userId) {
+			return callback && callback();
+		}
+
 		var self = this;
-		
-		var self = this;
-			clearSettings(self);
-			callback && callback(err, r && r.result);
-		};
 
 		var cb = function(){
 
@@ -662,7 +662,6 @@ window.Buddy =  function (root) {
 	}
 
 	BuddyClient.prototype.socialLogin = function(identityProviderName, identityID, identityAccessToken, callback){
-		var self = this;
 		var cb = function(err, r){
 			if (r.success) {
 				var user = r.result;
@@ -670,7 +669,7 @@ window.Buddy =  function (root) {
 					user_id: user.id
 				});
 
-				setAccessToken(self, 'user', user);
+				setAccessToken(this, 'user', user);
 			}
 			callback && callback(err, r && r.result);
 		};
