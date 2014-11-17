@@ -81,11 +81,15 @@ Each SDK provides wrappers that make REST calls to Buddy.
 
 #### POST
 
+We now can call GET to [search for the checkin](https://buddyplatform.com/docs/Checkins#SearchCheckins) we just created!
+
 	// POST to Checkins
 	// Location is required
 	Buddy.post('/checkins', {location: '34.052, -118.243', description: 'Somewhere in LA'}, [callback]);
 
 #### GET
+
+We now can call GET to [search for the checkin](https://buddyplatform.com/docs/Checkins#SearchCheckins) we just created!
 
 	// GET a checkin by ID
 	var checkinId;
@@ -103,7 +107,7 @@ Buddy offers support for binary files. The JavaScript SDK works with files throu
 
 #### Upload A File
 
-Here we demonstrate uploading a picture. All binary files use the same pattern with a different path and different parameters. To upload a picture POST to `'/pictures'`
+Here we demonstrate uploading a picture. For all binary files (e.g. blobs and videos), the pattern is the same, but with a different path and different parameters. For full documentation see our [Media and Files](https://buddyplatform.com/docs/Media%20and%20Files) documentation page.
 
 	// This example assumes both of the following HTML elements exist:
 	// <input type="file" id="file" name="file" />
